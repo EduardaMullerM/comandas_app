@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}{% endblock %} - AbcBolinhas</title>
+
+    {% block style %}{% endblock %}
+    <style>
+        .important {
+            color: #6495ED;
+        }
+    </style>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+
+    {% block menu %}
+    <ul>
+        <li><a href="{{ url_for('index.formIndex') }}">Home</a></li>
+        <li><a href="{{ url_for('funcionario.formListaFuncionario') }}">Funcionário</a></li>
+        <li><a href="{{ url_for('cliente.formListaCliente') }}">Cliente</a></li>
+        <li><a href="{{ url_for('produto.formListaProduto') }}">Produto</a></li>
+    </ul>
+    {% endblock %}
+
+    {% block menu %}{% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+    &copy; Copyright 2022 by <a href="http://127.0.0.1:5000/">AbcBolinhas</a>.
+    {% endblock %}
+
+    {% block js %}{% endblock %}
+    
+</body>
+</html>

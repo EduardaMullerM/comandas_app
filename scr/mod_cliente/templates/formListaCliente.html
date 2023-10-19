@@ -7,9 +7,18 @@
 </head>
 
 <body>
-    <h1>Rota da página de Clientes da nossa WEB APP</h1>
-    <h1>Nome: Eduarda Müller Mahado</h1>
-    <h1>Uso de render_template</h1>
+    {% extends "base.html" %}
+
+    {% block title %}Cliente{% endblock %}
+
+    {% block content %}
+    <h1>Cliente</h1>
+    <p class="important">Seja bem vindo!</p>
+    
+    <ul>
+        <li><a href="{{ url_for('index.formIndex') }}">Home</a></li>
+    </ul>
+    {% endblock %}
 </body>
 
 </html>
