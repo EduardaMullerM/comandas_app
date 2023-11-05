@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Produto{% endblock %}
+
+{% block content %}
+
+    <h1>Produtos</h1>
+    <div class="d-flex justify-content-center">
+        <div class="card col-md-8">
+            <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Descricao</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Foto</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Valor</th>
+                        <th class="text-secondary opacity-7"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% if result %}
+                        {% for row in result %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h6 class="mb-0 text-xs">{{ row['nome'] }}</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <p class="text-xs text-secondary mb-0">{{ row['descricao'] }}</p>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <div>
+                                        <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg" class="avatar-sm">
+                                    </div>
+                                </td>
+                                <td class="align-middle text-center">
+                                    <p class="text-xs text-secondary mb-0">{{ row['valor_unitario'] }}</p>
+                                </td>
+                                <td class="align-middle">
+                                <a  href="{{ url_for('funcionario.formFuncionario') }}" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                    Edit
+                                </a>
+                                </td>
+                            </tr> 
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>                      
+                </table>
+            </div>
+        </div>
+    </div>
+
+<!--
+    id_produto: int = None
+    nome: str
+    descricao: str
+    foto: str
+    valor_unitario: float
+    <h1>Cadastro de Produtos</h1>
+-->    
+    
+{% endblock %}
+
+
+    

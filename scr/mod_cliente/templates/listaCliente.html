@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+    <h1>Clientes</h1>
+    <div class="d-flex justify-content-center">
+        <div class="card col-md-8">
+            <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Telefone</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">CPF</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Valor Fiado</th>
+                        <th class="text-secondary opacity-7"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% if result %}
+                        {% for row in result %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex px-2 py-1">
+                                        <div>
+                                        <img src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/img/team-2.jpg" class="avatar avatar-sm me-3">
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-xs">{{ row['nome'] }}</h6>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="text-xs font-weight-bold mb-0">{{ row['telefone'] }}</p>
+                                </td>
+                                <td>
+                                    <p class="text-xs text-secondary mb-0">{{ row['cpf'] }}</p>
+                                </td>
+                                <td class="align-middle text-center text-sm">
+                                    <p class="text-xs text-secondary mb-0">{{ row['compra_fiado']}}</p>
+                                </td>
+                                <td class="align-middle">
+                                <a  href="{{ url_for('cliente.formCliente') }}" class="text-secondary font-weight-normal text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                                    Edit
+                                </a>
+                                </td>
+                            </tr>        
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>       
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

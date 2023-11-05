@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Produto{% endblock %}
+
+{% block content %}
+
+<h1>Produtos</h1>
+    
+<div class="row justify-content-center ">
+    <div class="card col-md-9 p-0 mt-6 bg-light p-4">
+        <div class="">
+            <form>
+                <div class="row">
+                    <h3>Cadastro de Produtos</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group input-group-outline my-3">
+                            <label class="form-label">Nome</label>
+                            <input type="email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group input-group-outline my-3">
+                            <label class="form-label">Descrição</label>
+                            <input type="email" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group my-3">
+                            <input class="form-control p-2" type="file" id="formFile">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group input-group-outline my-3">
+                            <label class="form-label">Valor Unitário</label>
+                            <input type="number" class="form-control" id="valor-unitario">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="mt-4 w-100 d-flex justify-content-between">
+            <button type="button" class="btn btn-outline-info col-md-2">Voltar</button>
+            <button type="button" class="btn bg-gradient-success col-md-2">Salvar</button>
+        </div>
+    </div>
+</div>
+
+<!--
+    id_produto: int = None
+    nome: str
+    descricao: str
+    foto: str
+    valor_unitario: float
+    <h1>Cadastro de Produtos</h1>
+-->    
+    
+{% endblock %}
+
+
+    
