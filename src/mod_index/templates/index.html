@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <h1>Página inicial</h1>
+    <p class="important">Seja muito bem vindo! <br> {{ session['login']['grupo'] }} <b>{{ session['login']['nome'] }}!</p>
+    
+{% endblock %}

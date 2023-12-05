@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Produto
+{% endblock %}
+
+{% block content %}
+  <h1>Produtos</h1>
+  <div class="d-flex justify-content-center">
+    <div class="card col-md-8">
+      <div class="table-responsive">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nome</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Descricao</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Valor</th>
+              <th class="text-secondary opacity-7"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if result %}
+              {% for row in result %}
+                <tr>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div>
+                        <img src="https://cdn-icons-png.flaticon.com/512/6326/6326055.png" class="avatar avatar-sm me-3" />
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <p class="text-xs text-secondary mb-0">{{ row['nome'] }}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p class="text-xs text-secondary mb-0">{{ row['descricao'] }}</p>
+                  </td>
+                  <td class="align-middle text-center">
+                    <p class="text-xs text-secondary mb-0">{{ row['valor_unitario'] }}</p>
+                  </td>
+                  <td class="align-middle">
+                    <form action="{{ url_for('produto.formEditProduto') }}" method="POST" name="formEdit{{ row['id_produto'] }}">
+                        <input type="hidden" name="id" value="{{ row['id_produto'] }}">
+                        <button type="submit" name="formEditProduto"> <i class="fas fa-edit"></i></button>
+                    </form>
+                </td>
+                <td class="align-middle">
+                    <form method='POST' name='jsDelete' id='jsDelete'>
+                        <input type='hidden' name='id_produto' value="{{ row['id_produto'] }}">
+                        <button type='submit' name='formDeleteProduto' class='btn'><i class='fas fa-trash'></i></button>
+                    </form>
+                </td>
+                </tr>
+              {% endfor %}
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <form action="{{ url_for('produto.pdfTodos') }}" method="POST">
+    <input type="submit" value="Gerar relatório" formtarget="_blank" />
+  </form>
+{% endblock %}

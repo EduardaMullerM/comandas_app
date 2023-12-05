@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Cliente{% endblock %}
+
+{# ajusta as variáveis conforme novo ou edit #}
+{% set id = result[0].id_cliente if result else '0' %}
+{% set nome = result[0].nome if result else '' %}
+{% set cpf = result[0].cpf if result else '' %}
+{% set telefone = result[0].telefone if result else '' %}
+{% set compra_fiado = result[0].compra_fiado if result else '' %}
+{% set dia_fiado = result[0].dia_fiado if result else '' %}
+{% set senha = result[0].senha if result else '' %}
+
+{% block content %}
+    <h1>Clientes</h1>   
+    
+    <div class="row justify-content-center ">
+        <div class="card col-md-9 p-0 mt-6 bg-light p-4">
+            <div class="">
+                <form 
+                    name="{{ 'formEditar' if result else 'formAdicionar' }}"
+                    id="{{ 'formEditar' if result else 'formAdicionar' }}"
+                    action="{{ url_for('cliente.edit') if result else url_for('cliente.insert') }}"
+                    method="POST">
+                    <div class="row">
+                        <h3>Cadastro de Clientes</h3>
+                    </div>
+                    <input class="form-control" name="id" id="id" value="{{ id }}" hidden>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">Nome</label>
+                                <input type="text" class="form-control" name="nome" id="nome" value="{{ nome }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" name="telefone" id="telefone" value="{{ telefone }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">CPF</label>
+                                <input type="text" class="form-control" id="cpf" name="cpf" id="cpf" value="{{ cpf }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">Senha</label>
+                                <input type="password" class="form-control" name="senha" id="senha" value="{{ senha }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 w-100 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-info col-md-2">Voltar</button>
+                        <button type="submit" class="btn bg-gradient-success col-md-2" id='salvaClienteDB'>Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<!--
+    id_produto: int = None
+    nome: str
+    cpf: str
+    telefone: str
+    compra_fiado: float
+    dia_fiado: str
+    senha: str
+-->

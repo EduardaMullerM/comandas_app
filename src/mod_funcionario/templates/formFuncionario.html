@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Funcionário{% endblock %}
+
+{# ajusta as variáveis conforme novo ou edit #}
+{% set id = result[0].id_funcionario if result else '0' %}
+{% set nome = result[0].nome if result else '' %}
+{% set matricula = result[0].matricula if result else '' %}
+{% set cpf = result[0].cpf if result else '' %}
+{% set telefone = result[0].telefone if result else '' %}
+{% set grupo = result[0].grupo if result else '' %}
+{% set senha = result[0].senha if result else '' %}
+
+{% block content %}
+    <h1>Funcionário - {{ "%s: %s" % ('Editar Registro', id) if result else 'Novo' }}</h1>   
+    
+    <div class="row justify-content-center ">
+        <div class="card col-md-9 p-0 mt-6 bg-light p-4">
+            <div class="">
+                <form 
+                    name="{{ 'formEditar' if result else 'formAdicionar' }}"
+                    id="{{ 'formEditar' if result else 'formAdicionar' }}"
+                    action="{{ url_for('funcionario.edit') if result else url_for('funcionario.insert') }}"
+                    method="POST">
+                    <div class="row">
+                        <h3>Cadastro de Funcionários</h3>
+                    </div>
+                    <input class="form-control" name="id" id="id" value="{{ id }}" hidden>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">Nome</label>
+                                <input type="text" class="form-control" name="nome" id="nome" value="{{ nome }}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">Matrícula</label>
+                                <input type="text" class="form-control"  name="matricula" id="matricula" value="{{ matricula }}">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">CPF</label>
+                                <input type="text" class="form-control" id="cpf" name="cpf" value="{{ cpf }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">Telefone</label>
+                                <input type="text" class="form-control" name="telefone" id="telefone" value="{{ telefone }}">
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group input-group-outline my-3 {% if result[0] is defined and result[0] %}is-filled{% endif %}">
+                                <label class="form-label">Senha</label>
+                                <input type="password" class="form-control" name="senha" id="senha" value="{{ senha }}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group input-group-static mb-4">
+                                <label for="selectGroup" class="ms-0">Grupo</label>
+                                <select class="form-control" id="selectGroup" name="grupo" id="grupo">
+                                    <option value="0" {{ 'selected' if grupo == 0 else '' }}>Atendente</option>
+                                    <option value="1" {{ 'selected' if grupo == 1 else '' }}>Caixa</option>
+                                    <option value="2" {{ 'selected' if grupo == 2 else '' }}>Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 w-100 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-info col-md-2">Voltar</button>
+                        <button type="submit" class="btn bg-gradient-success col-md-2" id='salvaUsuarioDB'>Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+<!--
+    id_funcionario: int = None
+    nome: str
+    matricula: str
+    cpf: str
+    telefone: str = None
+    grupo: int
+    senha: str = None
+-->
